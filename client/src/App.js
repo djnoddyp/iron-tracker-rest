@@ -6,6 +6,21 @@ import logo from './dumbbell.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      workoutData: getWorkouts(),
+    }
+  }
+
+  // componentWillMount() {
+  //   var data = getWorkouts();
+  //   console.log('data1: ' + data);
+  //   this.setState = {
+  //     workoutData: data,
+  //   }
+  // }
+
   render() {
     return (
       <div className="App">
@@ -13,40 +28,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">iron tracker</h1>
         </header>
-        <RecentWorkoutsTable workouts={WORKOUTS} />
+        <RecentWorkoutsTable workouts={this.state.workoutData} />
         <WorkoutForm exercises={EXERCISES} />
       </div>
     );
   }
 }
 
-class GetWorkoutsButton extends Component {
-  constructor(props) {
-    super(props);
-    this.getWorkouts = this.getWorkouts.bind(this);
+function getWorkouts() {
+  let data;
+  function reqListener() {
+    data = this.responseText;
   }
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.getWorkouts}>Get workouts</button>
-        <p id="result" className="App-para">Some result</p>
-      </div>
-    );
-  }
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", reqListener);
+  req.open("GET", "http://localhost:8080/workouts", false);
+  req.send();
 
-  getWorkouts() {
-    function reqListener() {
-      console.log(this.responseText);
-      //populateWorkouts(req.response);
-      document.getElementById("result").innerHTML = req.responseText;
-    }
-
-    var req = new XMLHttpRequest();
-    req.addEventListener("load", reqListener);
-    req.open("GET", "http://localhost:8081/workouts", false);
-    req.send();
-  }
+  return data;
 }
 
 const WORKOUTS = [

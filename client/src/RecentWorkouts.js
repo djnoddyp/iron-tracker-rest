@@ -1,32 +1,10 @@
 import React from 'react';
 
 class RecentWorkoutsTable extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.setState({
-  //     url: "http://localhost:8081/workouts",
-  //     jsonData: {},
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   function reqListener() {
-  //     console.log(this.responseText);
-  //     this.setState({
-  //       jsonData: this.responseText,
-  //     });
-  //   }
-
-  //   var req = new XMLHttpRequest();
-  //   req.addEventListener("load", reqListener);
-  //   req.open("GET", this.state.url, false);
-  //   req.send();
-  // }
-
   render() {
     const rows = [];
-
-    this.props.workouts.forEach((workout) => {
+    const json = JSON.parse(this.props.workouts);
+    json.forEach((workout) => {
       rows.push(
         <WorkoutRow
           workoutDate={workout.date}
@@ -54,12 +32,14 @@ class RecentWorkoutsTable extends React.Component {
 class WorkoutRow extends React.Component {
   render() {
     const workoutDate = this.props.workoutDate;
-    const exercises = this.props.exercises;
+    const exerciseList = this.props.exercises.map((ex) =>
+      <li>{ex.name}</li>
+    );
 
     return(
       <tr>
         <td>{workoutDate}</td>
-        <td>{exercises}</td>
+        <td><ul>{exerciseList}</ul></td>
       </tr>
     );
   }
