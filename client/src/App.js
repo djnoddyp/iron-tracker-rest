@@ -8,18 +8,18 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handleRefreshWorkouts = this.handleRefreshWorkouts.bind(this);
     this.state = {
       workoutData: getWorkouts(),
     }
   }
 
-  // componentWillMount() {
-  //   var data = getWorkouts();
-  //   console.log('data1: ' + data);
-  //   this.setState = {
-  //     workoutData: data,
-  //   }
-  // }
+  handleRefreshWorkouts() {
+    const data = getWorkouts();
+    this.setState({
+      workoutData: data,
+    });
+  }
 
   render() {
     return (
@@ -28,7 +28,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">iron tracker</h1>
         </header>
-        <RecentWorkoutsTable workouts={this.state.workoutData} />
+        <RecentWorkoutsTable 
+          workouts={this.state.workoutData}
+          onClick={this.handleRefreshWorkouts} />
         <WorkoutForm exercises={EXERCISES} />
       </div>
     );

@@ -15,6 +15,7 @@ class RecentWorkoutsTable extends React.Component {
     return(
       <div class='recent-workouts'>
         <h2>recent workouts</h2>
+        <button onClick={this.props.onClick}>refresh</button>
         <table>
           <thead>
             <tr>

@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 2s alternate;
+  /* animation: App-logo-spin infinite 2s alternate; */
   height: 80px;
   /*margin-left: 10px;*/
   float: right;
@@ -33,12 +33,12 @@
   float: right;
 }
 
-/*@keyframes App-logo-spin {
+@keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}*/
+}
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   0% { transform: translateY(0); }
   100% { transform: translateY(70px); }
-}
+} */
