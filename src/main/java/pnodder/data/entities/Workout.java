@@ -1,5 +1,7 @@
 package pnodder.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -11,6 +13,7 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

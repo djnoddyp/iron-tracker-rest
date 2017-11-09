@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecentWorkoutsTable from './RecentWorkouts.js';
 import WorkoutForm from './NewWorkout.js';
+import CreateWorkoutForm from './CreateNewWorkouts.js';
 
 import logo from './dumbbell.svg';
 import './App.css';
@@ -31,7 +32,8 @@ class App extends Component {
         <RecentWorkoutsTable 
           workouts={this.state.workoutData}
           onClick={this.handleRefreshWorkouts} />
-        <WorkoutForm exercises={EXERCISES} />
+        {/* <WorkoutForm exercises={EXERCISES} /> */}
+        <CreateWorkoutForm />
       </div>
     );
   }

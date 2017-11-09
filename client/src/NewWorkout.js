@@ -42,7 +42,7 @@ class WorkoutForm extends React.Component {
     });
     return(
       <div class="Workout-form">
-        <h2>add new workout</h2>
+        <h2>create new workout</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             type="date"
