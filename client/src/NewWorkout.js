@@ -42,7 +42,7 @@ class WorkoutForm extends React.Component {
     });
     return(
       <div class="Workout-form">
-        <h2>create new workout</h2>
+        <h2>add new workout</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             type="date"
@@ -75,14 +75,6 @@ class ExerciseOption extends React.Component {
 function sendFormData(data) {
   var XHR = new XMLHttpRequest();
   var urlEncodedData = "";
-  // var urlEncodedDataPairs = [];
-  // var name;
-  // for(name in data) {
-  //   urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-  // }
-  // // Combine the pairs into a single string and replace all %-encoded spaces to
-  // // the '+' character; matches the behaviour of browser form submissions.
-  // urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
   urlEncodedData = JSON.stringify(data);
   XHR.addEventListener('load', function(event) {
     console.log(this.responseText);
@@ -90,7 +82,7 @@ function sendFormData(data) {
   XHR.addEventListener('error', function(event) {
     alert('Oups! Something goes wrong.');
   });
-  XHR.open('POST', 'http://localhost:8080/workouts', true);
+  XHR.open('POST', 'http://localhost:3333/workouts', true);
   XHR.setRequestHeader('Content-Type', 'application/json');
   XHR.send(urlEncodedData);
 }

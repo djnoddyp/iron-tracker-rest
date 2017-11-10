@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RecentWorkoutsTable from './RecentWorkouts.js';
-import WorkoutForm from './NewWorkout.js';
 import CreateWorkoutForm from './CreateNewWorkouts.js';
 
 import logo from './dumbbell.svg';
@@ -15,6 +14,10 @@ class App extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   handleRefreshWorkouts() {
     const data = getWorkouts();
     this.setState({
@@ -23,6 +26,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('App rendered');
     return (
       <div className="App">
         <header className="App-header">
@@ -32,7 +36,6 @@ class App extends Component {
         <RecentWorkoutsTable 
           workouts={this.state.workoutData}
           onClick={this.handleRefreshWorkouts} />
-        {/* <WorkoutForm exercises={EXERCISES} /> */}
         <CreateWorkoutForm />
       </div>
     );
@@ -47,7 +50,7 @@ function getWorkouts() {
 
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
-  req.open("GET", "http://localhost:8080/workouts", false);
+  req.open("GET", "http://localhost:8081/workouts", false);
   req.send();
 
   return data;

@@ -8,9 +8,9 @@ class CreateWorkoutForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           workout date
           <input name="date" type="date" />
-          <ExerciseDetails exercises={EXERCISES} />
           <input type="submit" value="submit" />
         </form>
+        <ExerciseDetails exercises={EXERCISES} />
       </div>
     );
   }
@@ -23,11 +23,13 @@ class ExerciseDetails extends React.Component {
     this.handleRepsChange = this.handleRepsChange.bind(this);
     this.handleAddExercise = this.handleAddExercise.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.state = {
       exercisesList: [],
-      name: "",
+      name: "shoulder raises",
       sets: 0,
       reps: 0,
+      exId: 0,
     };
   }
 
@@ -49,15 +51,32 @@ class ExerciseDetails extends React.Component {
     });
   }
 
+  handleDelete(event) {
+    const id = event.target.id;
+    const list = this.state.exercisesList.slice();
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id == id) {
+        list.splice(i, 1);
+        break;
+      }
+    }
+    this.setState({
+      exercisesList: list,
+    });
+  }
+
   handleAddExercise(event) {
-    const list = [];
+    const list = this.state.exercisesList.slice();
+    var id = this.state.exId++;
     list.push({
+      "id": this.state.exId,
       "name": this.state.name,
       "sets": this.state.sets,
       "reps": this.state.reps,
     });
     this.setState({
       exercisesList: list,
+      exId: id,
     });
   }
 
@@ -75,26 +94,32 @@ class ExerciseDetails extends React.Component {
         <select onChange={this.handleNameChange}>
           {options}
         </select>
-        <input type="text" placeholder="sets" value={this.state.sets} onChange={this.handleSetsChange} />
-        <input type="text" placeholder="reps" value={this.state.reps} onChange={this.handleRepsChange} />
+        <input type="text" placeholder="sets" onChange={this.handleSetsChange} />
+        <input type="text" placeholder="reps" onChange={this.handleRepsChange} />
         <button onClick={this.handleAddExercise}>add</button>
-        <ExerciseTable exercisesList={this.state.exercisesList} />
+        <ExerciseTable 
+          exercisesList={this.state.exercisesList}
+          handleDelete={this.handleDelete} />
       </div>
     );
   }
 }
 
 class ExerciseTable extends React.Component {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return false;
+  // }
+
   render() {
-    console.log('table: ' + this.props.exercisesList);
+    //alert(this.props.exercisesList);
     const list = [];
     this.props.exercisesList.forEach((exercise) => {
       list.push(
-        <tr>
+        <tr key={exercise.id}>
           <td>{exercise.name}</td>
           <td>{exercise.sets}</td>
           <td>{exercise.reps}</td>
-          <td><button>delete</button></td>
+          <td><button id={exercise.id} onClick={this.props.handleDelete}>delete</button></td>
         </tr>
       );
     }); 
@@ -102,12 +127,16 @@ class ExerciseTable extends React.Component {
     return (
       <div>
         <table id="exercises">
-          <tr>
-            <th>name</th>
-            <th>sets</th>
-            <th>reps</th>
-          </tr>
-          {list}
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>sets</th>
+              <th>reps</th>
+            </tr>
+          </thead>
+          <tbody>
+           {list}
+          </tbody>
         </table>
       </div>
     );
