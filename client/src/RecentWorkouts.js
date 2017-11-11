@@ -7,22 +7,17 @@ class RecentWorkoutsTable extends React.Component {
     json.forEach((workout) => {
       rows.push(
         <WorkoutRow
+          key={workout.id}
           workoutDate={workout.date}
           exercises={workout.exercises} />
       );
     });
 
     return(
-      <div class='recent-workouts'>
+      <div className="recent-workouts">
         <h2>recent workouts</h2>
         <button onClick={this.props.onClick}>refresh</button>
-        <table>
-          <thead>
-            <tr>
-              <th>date</th>
-              <th>exercises</th>
-            </tr>
-          </thead>
+        <table id="exercises">
           <tbody>{rows}</tbody>
         </table>
       </div>
@@ -34,13 +29,28 @@ class WorkoutRow extends React.Component {
   render() {
     const workoutDate = this.props.workoutDate;
     const exerciseList = this.props.exercises.map((ex) =>
-      <li>{ex.name}</li>
+      <tr key={ex.id}>
+        <td>{ex.name}</td>
+        <td>{ex.sets}</td>
+        <td>{ex.reps}</td>
+      </tr>
     );
 
     return(
       <tr>
         <td>{workoutDate}</td>
-        <td><ul>{exerciseList}</ul></td>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>exercise</th>
+                <th>sets</th>
+                <th>reps</th>
+              </tr>
+            </thead>
+            <tbody>{exerciseList}</tbody>
+          </table>
+        </td>
       </tr>
     );
   }

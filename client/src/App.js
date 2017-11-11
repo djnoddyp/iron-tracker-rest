@@ -14,10 +14,6 @@ class App extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
-  }
-
   handleRefreshWorkouts() {
     const data = getWorkouts();
     this.setState({
@@ -26,7 +22,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App rendered');
     return (
       <div className="App">
         <header className="App-header">
@@ -50,42 +45,10 @@ function getWorkouts() {
 
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
-  req.open("GET", "http://localhost:8081/workouts", false);
+  req.open("GET", "http://localhost:8080/workouts", false);
   req.send();
 
   return data;
 }
 
-const WORKOUTS = [
-  {
-		"date": 1508540400000,
-		"exercises": "Shoulder raises"
-	},
-	{
-		"date": 1508713200000,
-		"exercises": "Pull ups"
-	},
-  {
-    "date": 1508713200000,
-    "exercises": "Bench Press"
-  }
-];
-
-const EXERCISES = [
-  {
-		"name": "shoulder raises"
-	},
-	{
-		"name": "pull ups"
-	},
-  {
-    "name": "squats"
-  },
-  {
-    "name": "bent over rows"
-  },
-  {
-    "name": "bench press"
-  }
-];
 export default App;

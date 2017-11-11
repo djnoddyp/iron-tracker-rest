@@ -1,6 +1,7 @@
 package pnodder.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,10 +13,14 @@ public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
+    @JsonProperty
     private Long id;
 
     private String name;
+
+    private int sets;
+
+    private int reps;
 
     public Exercise() {
     }
@@ -38,5 +43,21 @@ public class Exercise {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
     }
 }

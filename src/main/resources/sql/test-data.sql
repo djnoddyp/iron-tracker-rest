@@ -1,7 +1,7 @@
-INSERT INTO Exercise (name) VALUES ('Dumbells');
-INSERT INTO Exercise (name) VALUES ('Push ups');
-INSERT INTO Exercise (name) VALUES ('Pull ups');
-INSERT INTO Exercise (name) VALUES ('Shoulder raises');
+INSERT INTO Exercise (name, sets, reps) VALUES ('Dumbells', 3, 10);
+INSERT INTO Exercise (name, sets, reps) VALUES ('Push ups', 4, 15);
+INSERT INTO Exercise (name, sets, reps) VALUES ('Pull ups', 4, 8);
+INSERT INTO Exercise (name, sets, reps) VALUES ('Shoulder raises', 3, 8);
 
 INSERT INTO Workout (date) VALUES ('2017-10-21');
 INSERT INTO Workout (date) VALUES ('2017-10-23');

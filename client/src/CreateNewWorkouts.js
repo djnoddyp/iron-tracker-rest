@@ -1,22 +1,6 @@
 import React from 'react';
 
 class CreateWorkoutForm extends React.Component {
-  render() {
-    return ( 
-      <div class="Workout-form">
-        <h2>create new workout</h2>
-        <form onSubmit={this.handleSubmit}>
-          workout date
-          <input name="date" type="date" />
-          <input type="submit" value="submit" />
-        </form>
-        <ExerciseDetails exercises={EXERCISES} />
-      </div>
-    );
-  }
-}
-
-class ExerciseDetails extends React.Component {
   constructor(props) {
     super(props);
     this.handleSetsChange = this.handleSetsChange.bind(this);
@@ -24,13 +8,35 @@ class ExerciseDetails extends React.Component {
     this.handleAddExercise = this.handleAddExercise.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
+      date: {},
       exercisesList: [],
       name: "shoulder raises",
       sets: 0,
       reps: 0,
       exId: 0,
     };
+    this.baseState = this.state;
+  }
+
+  handleSubmit(event) {
+    console.log('submitted');
+    const workout = {
+      "date": this.state.date,
+      "exercises": this.state.exercisesList,
+    };
+
+    sendFormData(workout);
+    event.preventDefault();
+    this.setState(this.baseState);
+  }
+
+  handleDateChange(event) {
+    this.setState({
+      date: event.target.value,
+    });
   }
 
   handleSetsChange(event) {
@@ -67,9 +73,9 @@ class ExerciseDetails extends React.Component {
 
   handleAddExercise(event) {
     const list = this.state.exercisesList.slice();
-    var id = this.state.exId++;
+    var id = ++this.state.exId;
     list.push({
-      "id": this.state.exId,
+      //"id": this.state.exId,
       "name": this.state.name,
       "sets": this.state.sets,
       "reps": this.state.reps,
@@ -82,20 +88,27 @@ class ExerciseDetails extends React.Component {
 
   render() {
     const options = [];
-    this.props.exercises.forEach((exercise) => {
+    EXERCISES.forEach((ex) => {
       options.push(
-        <option>{exercise.name}</option>
+        <option key={ex.id}>{ex.name}</option>
       );
     }); 
 
     return (
-      <div>
-        add exercises
+      <div className="Workout-form">
+        <h2>create new workout</h2>
+        <form onSubmit={this.handleSubmit}>
+          workout date
+          <input name="date" type="date" value={this.state.date} onChange={this.handleDateChange} />
+          <input type="submit" value="submit" />
+        </form>
+        <br/><br/>
+        <p>add an exercise</p>
         <select onChange={this.handleNameChange}>
           {options}
         </select>
-        <input type="text" placeholder="sets" onChange={this.handleSetsChange} />
-        <input type="text" placeholder="reps" onChange={this.handleRepsChange} />
+        <input type="number" value={this.state.sets} onChange={this.handleSetsChange} />
+        <input type="number" value={this.state.reps} onChange={this.handleRepsChange} />
         <button onClick={this.handleAddExercise}>add</button>
         <ExerciseTable 
           exercisesList={this.state.exercisesList}
@@ -106,12 +119,7 @@ class ExerciseDetails extends React.Component {
 }
 
 class ExerciseTable extends React.Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return false;
-  // }
-
   render() {
-    //alert(this.props.exercisesList);
     const list = [];
     this.props.exercisesList.forEach((exercise) => {
       list.push(
@@ -119,7 +127,7 @@ class ExerciseTable extends React.Component {
           <td>{exercise.name}</td>
           <td>{exercise.sets}</td>
           <td>{exercise.reps}</td>
-          <td><button id={exercise.id} onClick={this.props.handleDelete}>delete</button></td>
+          {/* <td><button id={exercise.id} onClick={this.props.handleDelete}>delete</button></td> */}
         </tr>
       );
     }); 
@@ -143,40 +151,54 @@ class ExerciseTable extends React.Component {
   }
 }
 
-export default CreateWorkoutForm;
+function sendFormData(data) {
+  var XHR = new XMLHttpRequest();
+  var urlEncodedData = "";
+  urlEncodedData = JSON.stringify(data);
+  XHR.addEventListener('load', function(event) {
+    console.log(this.responseText);
+  });
+  XHR.addEventListener('error', function(event) {
+    alert('Oups! Something goes wrong.');
+  });
+  XHR.open('POST', 'http://localhost:3333/workouts', true);
+  XHR.setRequestHeader('Content-Type', 'application/json');
+  XHR.send(urlEncodedData);
+}
 
-const EXERCISES_LIST = [
-  {
-    "name": "dumbells",
-    "sets": 3,
-    "reps": 12,
-  },
-  {
-    "name": "push ups",
-    "sets": 4,
-    "reps": 15,
-  },
-  {
-    "name": "bench press",
-    "sets": 3,
-    "reps": 8,
-  },
-];
+export default CreateWorkoutForm;
 
 const EXERCISES = [
   {
-		"name": "shoulder raises"
+    "id": 1,
+		"name": "shoulder raises",
 	},
 	{
+    "id": 2,
 		"name": "pull ups"
 	},
   {
+    "id": 3,
     "name": "squats"
   },
   {
+    "id": 4,
     "name": "bent over rows"
   },
   {
+    "id": 5,
     "name": "bench press"
-  }
+  },
+  {
+    "id": 6,
+    "name": "sit ups"
+  },
+  {
+    "id": 7,
+    "name": "chin ups"
+  },
+  {
+    "id": 8,
+    "name": "french press"
+  },
 ];
