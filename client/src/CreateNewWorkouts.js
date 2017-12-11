@@ -101,18 +101,18 @@ class CreateWorkoutForm extends React.Component {
           workout date
           <input name="date" type="date" value={this.state.date} onChange={this.handleDateChange} />
           <input type="submit" value="submit" />
+          <br/><br/>
+          <p>add an exercise</p>
+          <select onChange={this.handleNameChange}>
+            {options}
+          </select>
+          <input type="number" value={this.state.sets} onChange={this.handleSetsChange} />
+          <input type="number" value={this.state.reps} onChange={this.handleRepsChange} />
         </form>
-        <br/><br/>
-        <p>add an exercise</p>
-        <select onChange={this.handleNameChange}>
-          {options}
-        </select>
-        <input type="number" value={this.state.sets} onChange={this.handleSetsChange} />
-        <input type="number" value={this.state.reps} onChange={this.handleRepsChange} />
         <button onClick={this.handleAddExercise}>add</button>
         <ExerciseTable 
-          exercisesList={this.state.exercisesList}
-          handleDelete={this.handleDelete} />
+            exercisesList={this.state.exercisesList}
+            handleDelete={this.handleDelete} />
       </div>
     );
   }
@@ -161,7 +161,7 @@ function sendFormData(data) {
   XHR.addEventListener('error', function(event) {
     alert('Oups! Something goes wrong.');
   });
-  XHR.open('POST', 'http://localhost:3333/workouts', true);
+  XHR.open('POST', 'http://localhost:8081/workouts', true);
   XHR.setRequestHeader('Content-Type', 'application/json');
   XHR.send(urlEncodedData);
 }

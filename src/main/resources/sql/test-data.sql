@@ -11,3 +11,12 @@ INSERT INTO Workout_Exercise (workout_id, exercise_id) VALUES (1, 4);
 INSERT INTO Workout_Exercise (workout_id, exercise_id) VALUES (2, 2);
 INSERT INTO Workout_Exercise (workout_id, exercise_id) VALUES (2, 3);
 
+INSERT INTO Exercisenames (name) VALUES ('shoulder raises');
+INSERT INTO Exercisenames (name) VALUES ('pull ups');
+INSERT INTO Exercisenames (name) VALUES ('squats');
+INSERT INTO Exercisenames (name) VALUES ('bent over rows');
+INSERT INTO Exercisenames (name) VALUES ('bench press');
+INSERT INTO Exercisenames (name) VALUES ('sit ups');
+INSERT INTO Exercisenames (name) VALUES ('chin ups');
+INSERT INTO Exercisenames (name) VALUES ('french press');
+

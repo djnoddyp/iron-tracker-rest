@@ -45,7 +45,7 @@ function getWorkouts() {
 
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
-  req.open("GET", "http://localhost:8080/workouts", false);
+  req.open("GET", "http://localhost:8081/workouts", false);
   req.send();
 
   return data;
