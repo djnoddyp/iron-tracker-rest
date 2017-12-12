@@ -1,7 +1,7 @@
 package pnodder.data.services;
 
 import org.springframework.stereotype.Service;
-import pnodder.data.entities.Exercise;
+import pnodder.data.domain.Exercise;
 import pnodder.data.repositories.ExerciseRepository;
 
 @Service

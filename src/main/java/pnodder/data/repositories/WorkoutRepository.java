@@ -1,7 +1,7 @@
 package pnodder.data.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import pnodder.data.entities.Workout;
+import pnodder.data.domain.Workout;
 
 public interface WorkoutRepository extends CrudRepository<Workout, Long> {
 

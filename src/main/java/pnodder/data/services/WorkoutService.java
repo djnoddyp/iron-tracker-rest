@@ -2,7 +2,7 @@ package pnodder.data.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pnodder.data.entities.Workout;
+import pnodder.data.domain.Workout;
 import pnodder.data.repositories.WorkoutRepository;
 
 @Service

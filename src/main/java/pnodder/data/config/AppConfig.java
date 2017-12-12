@@ -48,7 +48,7 @@ public class AppConfig {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("pnodder.data.entities");
+        factory.setPackagesToScan("pnodder.data.domain");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(getHibernateProperties());
         return factory;

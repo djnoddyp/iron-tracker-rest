@@ -1,4 +1,4 @@
-package pnodder.data.entities;
+package pnodder.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

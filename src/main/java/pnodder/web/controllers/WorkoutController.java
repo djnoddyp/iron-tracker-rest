@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pnodder.data.entities.Workout;
+import pnodder.data.domain.ExerciseNames;
+import pnodder.data.domain.Workout;
+import pnodder.data.services.ExerciseNamesService;
 import pnodder.data.services.WorkoutService;
 
 @Controller
@@ -12,9 +14,11 @@ import pnodder.data.services.WorkoutService;
 public class WorkoutController {
 
     private WorkoutService workoutService;
+    private ExerciseNamesService exerciseNamesService;
 
-    public WorkoutController(WorkoutService workoutService) {
+    public WorkoutController(WorkoutService workoutService, ExerciseNamesService exerciseNamesService) {
         this.workoutService = workoutService;
+        this.exerciseNamesService = exerciseNamesService;
     }
 
     @GetMapping("/workout/{id}")
@@ -33,7 +37,13 @@ public class WorkoutController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveWorkout(@RequestBody Workout workout) {
         workoutService.save(workout);
-        System.out.println("Workouts saved");
+        System.out.println("Workout saved");
+    }
+
+    @GetMapping("/exerciseNames")
+    @ResponseBody
+    public Iterable<ExerciseNames> findAllExerciseNames() {
+        return exerciseNamesService.findAllExerciseNames();
     }
 
 }

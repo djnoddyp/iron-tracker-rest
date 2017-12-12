@@ -1,13 +1,15 @@
-package pnodder.data.entities;
+package pnodder.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@XmlRootElement
 public class Workout {
 
     @Id

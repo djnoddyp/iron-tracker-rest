@@ -1,4 +1,6 @@
-package pnodder.data.entities;
+package pnodder.data.domain;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ public class ExerciseNames {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
     private Long id;
 
     private String name;

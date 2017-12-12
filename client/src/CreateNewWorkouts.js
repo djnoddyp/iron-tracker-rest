@@ -88,7 +88,8 @@ class CreateWorkoutForm extends React.Component {
 
   render() {
     const options = [];
-    EXERCISES.forEach((ex) => {
+    const data = JSON.parse(getExerciseNames());
+    data.forEach((ex) => {
       options.push(
         <option key={ex.id}>{ex.name}</option>
       );
@@ -166,39 +167,18 @@ function sendFormData(data) {
   XHR.send(urlEncodedData);
 }
 
-export default CreateWorkoutForm;
+function getExerciseNames() {
+  let data;
+  function reqListener() {
+    data = this.responseText;
+  }
 
-const EXERCISES = [
-  {
-    "id": 1,
-		"name": "shoulder raises",
-	},
-	{
-    "id": 2,
-		"name": "pull ups"
-	},
-  {
-    "id": 3,
-    "name": "squats"
-  },
-  {
-    "id": 4,
-    "name": "bent over rows"
-  },
-  {
-    "id": 5,
-    "name": "bench press"
-  },
-  {
-    "id": 6,
-    "name": "sit ups"
-  },
-  {
-    "id": 7,
-    "name": "chin ups"
-  },
-  {
-    "id": 8,
-    "name": "french press"
-  },
-];
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", reqListener);
+  req.open("GET", "http://localhost:8081/exerciseNames", false);
+  req.send();
+
+  return data;
+}
+
+export default CreateWorkoutForm;

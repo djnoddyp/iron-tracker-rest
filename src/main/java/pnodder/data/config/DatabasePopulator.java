@@ -1,20 +1,16 @@
 package pnodder.data.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
-import pnodder.data.entities.Exercise;
-import pnodder.data.entities.Workout;
+import pnodder.data.domain.Exercise;
+import pnodder.data.domain.Workout;
 import pnodder.data.repositories.ExerciseRepository;
 import pnodder.data.repositories.WorkoutRepository;
 
-import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
