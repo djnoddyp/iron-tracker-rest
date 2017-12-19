@@ -1,4 +1,5 @@
 import React from 'react';
+import RecentWorkoutsTable from './RecentWorkouts.js';
 
 class CreateWorkoutForm extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class CreateWorkoutForm extends React.Component {
       sets: 0,
       reps: 0,
       exId: 0,
+      workoutData: getWorkouts(),
     };
     this.baseState = this.state;
   }
@@ -31,6 +33,7 @@ class CreateWorkoutForm extends React.Component {
     sendFormData(workout);
     event.preventDefault();
     this.setState(this.baseState);
+    this.updateRecentWorkouts();
   }
 
   handleDateChange(event) {
@@ -86,6 +89,12 @@ class CreateWorkoutForm extends React.Component {
     });
   }
 
+  updateRecentWorkouts() {
+    this.setState({
+      workoutData: getWorkouts()
+    });
+  }
+
   render() {
     const options = [];
     const data = JSON.parse(getExerciseNames());
@@ -96,24 +105,29 @@ class CreateWorkoutForm extends React.Component {
     }); 
 
     return (
-      <div className="Workout-form">
-        <h2>create new workout</h2>
-        <form onSubmit={this.handleSubmit}>
-          workout date
-          <input name="date" type="date" value={this.state.date} onChange={this.handleDateChange} />
-          <input type="submit" value="submit" />
-          <br/><br/>
-          <p>add an exercise</p>
-          <select onChange={this.handleNameChange}>
-            {options}
-          </select>
-          <input type="number" value={this.state.sets} onChange={this.handleSetsChange} />
-          <input type="number" value={this.state.reps} onChange={this.handleRepsChange} />
-        </form>
-        <button onClick={this.handleAddExercise}>add</button>
-        <ExerciseTable 
-            exercisesList={this.state.exercisesList}
-            handleDelete={this.handleDelete} />
+      <div>
+        <div className="Workout-form">
+          <h2>create new workout</h2>
+          <form onSubmit={this.handleSubmit}>
+            workout date
+            <input name="date" type="date" value={this.state.date} onChange={this.handleDateChange} />
+            <input type="submit" value="submit" />
+            <br/><br/>
+            <p>add an exercise</p>
+            <select onChange={this.handleNameChange}>
+              {options}
+            </select>
+            <input type="number" value={this.state.sets} onChange={this.handleSetsChange} />
+            <input type="number" value={this.state.reps} onChange={this.handleRepsChange} />
+          </form>
+          <button onClick={this.handleAddExercise}>add</button>
+          <ExerciseTable 
+              exercisesList={this.state.exercisesList}
+              handleDelete={this.handleDelete} />
+        </div>
+        <div>
+          <RecentWorkoutsTable workouts={this.state.workoutData} />
+        </div>
       </div>
     );
   }
@@ -162,7 +176,7 @@ function sendFormData(data) {
   XHR.addEventListener('error', function(event) {
     alert('Oups! Something goes wrong.');
   });
-  XHR.open('POST', 'http://localhost:8081/workouts', true);
+  XHR.open('POST', 'http://localhost:8081/workouts', false);
   XHR.setRequestHeader('Content-Type', 'application/json');
   XHR.send(urlEncodedData);
 }
@@ -176,6 +190,20 @@ function getExerciseNames() {
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
   req.open("GET", "http://localhost:8081/exerciseNames", false);
+  req.send();
+
+  return data;
+}
+
+function getWorkouts() {
+  let data;
+  function reqListener() {
+    data = this.responseText;
+  }
+
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", reqListener);
+  req.open("GET", "http://localhost:8081/workouts", false);
   req.send();
 
   return data;
