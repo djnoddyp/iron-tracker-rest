@@ -30,7 +30,6 @@ public class AppConfig {
     @Autowired
     Environment env;
 
-    // Embedded database builder example - H2
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
@@ -71,11 +70,5 @@ public class AppConfig {
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
-
-    // Load test data into database
-//    @Bean(initMethod = "init")
-//    public DatabasePopulator databasePopulator() {
-//        return new DatabasePopulator();
-//    }
 
 }

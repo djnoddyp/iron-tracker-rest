@@ -17,7 +17,7 @@ public class ExerciseController {
     }
 
     @RequestMapping("/exercises")
-    public Iterable<Exercise> findAlExercises() {
+    public Iterable<Exercise> findAllExercises() {
         return exerciseService.findAll();
     }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RecentWorkoutsTable from './RecentWorkouts.js';
 import CreateWorkoutForm from './CreateNewWorkouts.js';
 
 import logo from './dumbbell.svg';
