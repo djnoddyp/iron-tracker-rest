@@ -10,6 +10,6 @@ RUN mvn install
 FROM tomcat:9.0.2-jre8-alpine
 #WORKDIR target
 #RUN pwd
-COPY --from=1 /app/target/iron-tracker-rest-1.0-SNAPSHOT.war usr/local/tomcat/webapps
-EXPOSE 8082
+COPY --from=1 /app/target/iron-tracker-rest-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/iron.war
+EXPOSE 8080
 CMD ["catalina.sh", "run"]
