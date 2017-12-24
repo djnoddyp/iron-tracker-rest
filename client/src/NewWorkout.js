@@ -82,7 +82,7 @@ function sendFormData(data) {
   XHR.addEventListener('error', function(event) {
     alert('Oups! Something goes wrong.');
   });
-  XHR.open('POST', 'http://localhost:3333/workouts', true);
+  XHR.open('POST', 'http://localhost:8080/workouts', true);
   XHR.setRequestHeader('Content-Type', 'application/json');
   XHR.send(urlEncodedData);
 }

@@ -1,0 +1,12 @@
+version: "3"
+services:
+  server:
+    image: 138c0298a530
+    ports:
+      - 8080:8080
+  web:
+    image: 161f5afe49ad
+    ports:
+      - 3000:3000
+    depends_on:
+      - server

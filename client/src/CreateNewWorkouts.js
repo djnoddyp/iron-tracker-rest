@@ -176,7 +176,7 @@ function sendFormData(data) {
   XHR.addEventListener('error', function(event) {
     alert('Oups! Something goes wrong.');
   });
-  XHR.open('POST', 'http://localhost:8081/workouts', false);
+  XHR.open('POST', 'http://localhost:8080/workouts', false);
   XHR.setRequestHeader('Content-Type', 'application/json');
   XHR.send(urlEncodedData);
 }
@@ -189,7 +189,7 @@ function getExerciseNames() {
 
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
-  req.open("GET", "http://localhost:8081/exerciseNames", false);
+  req.open("GET", "http://localhost:8080/exerciseNames", false);
   req.send();
 
   return data;
@@ -203,7 +203,7 @@ function getWorkouts() {
 
   var req = new XMLHttpRequest();
   req.addEventListener("load", reqListener);
-  req.open("GET", "http://localhost:8081/workouts", false);
+  req.open("GET", "http://localhost:8080/workouts", false);
   req.send();
 
   return data;
