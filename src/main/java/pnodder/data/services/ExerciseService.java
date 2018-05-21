@@ -1,17 +1,16 @@
 package pnodder.data.services;
 
-import org.springframework.stereotype.Service;
 import pnodder.data.domain.Exercise;
 import pnodder.data.repositories.ExerciseRepository;
 
-@Service
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+@ApplicationScoped
 public class ExerciseService {
 
+    @Inject
     private ExerciseRepository exerciseRepository;
-
-    public ExerciseService(ExerciseRepository exerciseRepository) {
-        this.exerciseRepository = exerciseRepository;
-    }
 
     public Iterable<Exercise> findAll() {
         return exerciseRepository.findAll();

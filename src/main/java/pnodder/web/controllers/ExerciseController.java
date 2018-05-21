@@ -1,22 +1,22 @@
 package pnodder.web.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import pnodder.data.domain.Exercise;
 import pnodder.data.services.ExerciseService;
 
-@RestController
-@CrossOrigin
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/exercises")
+@Produces(MediaType.APPLICATION_JSON)
 public class ExerciseController {
 
+    @Inject
     private ExerciseService exerciseService;
 
-    public ExerciseController(ExerciseService exerciseService) {
-        this.exerciseService = exerciseService;
-    }
-
-    @RequestMapping("/exercises")
+    @GET
     public Iterable<Exercise> findAllExercises() {
         return exerciseService.findAll();
     }

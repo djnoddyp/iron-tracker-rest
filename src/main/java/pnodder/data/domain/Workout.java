@@ -10,6 +10,16 @@ import java.util.Set;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(
+                name = "Workout.findAll",
+                query = "SELECT w FROM Workout w"
+        ),
+        @NamedQuery(
+                name = "Workout.findById",
+                query = "SELECT w FROM Workout w WHERE w.id = :id"
+        ),
+})
 public class Workout {
 
     @Id

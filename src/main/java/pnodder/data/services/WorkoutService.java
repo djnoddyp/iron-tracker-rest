@@ -1,22 +1,19 @@
 package pnodder.data.services;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pnodder.data.domain.Workout;
 import pnodder.data.repositories.WorkoutRepository;
 
-@Service
-@Transactional
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+@ApplicationScoped
 public class WorkoutService {
 
+    @Inject
     private WorkoutRepository workoutRepository;
 
-    public WorkoutService(WorkoutRepository workoutRepository) {
-        this.workoutRepository = workoutRepository;
-    }
-
     public Workout findById(Long id) {
-        return workoutRepository.findOne(id);
+        return workoutRepository.findById(id);
     }
 
     public Iterable<Workout> findAll() {

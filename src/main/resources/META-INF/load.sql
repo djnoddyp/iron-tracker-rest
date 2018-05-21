@@ -19,4 +19,3 @@ INSERT INTO Exercisenames (name) VALUES ('bench press');
 INSERT INTO Exercisenames (name) VALUES ('sit ups');
 INSERT INTO Exercisenames (name) VALUES ('chin ups');
 INSERT INTO Exercisenames (name) VALUES ('french press');
-

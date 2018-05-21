@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(
+        name = "ExerciseNames.findAll",
+        query = "SELECT e FROM ExerciseNames e"
+)
 public class ExerciseNames {
 
     @Id
