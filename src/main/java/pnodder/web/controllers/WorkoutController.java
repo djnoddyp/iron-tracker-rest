@@ -37,7 +37,7 @@ public class WorkoutController {
     }
 
     @POST
-    @Path(value = "/workouts")
+    @Path("/workouts")
     @Consumes(MediaType.APPLICATION_JSON)
     public void saveWorkout(Workout workout) {
         workoutService.save(workout);
