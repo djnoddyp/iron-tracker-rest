@@ -7,10 +7,10 @@
 
     <persistence-unit name="JOURNEYS">
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE" />
-            <property name="javax.persistence.jdbc.user" value="sa" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/irondb" />
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <!--<property name="javax.persistence.jdbc.password" value="trance" />-->
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.sql-load-script-source" value="META-INF/load.sql"/>
             <property name="hibernate.show_sql" value="true" />
