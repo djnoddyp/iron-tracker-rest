@@ -16,7 +16,7 @@ import javax.persistence.NamedQuery;
 public class Exercise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JsonProperty
     private Long id;
 

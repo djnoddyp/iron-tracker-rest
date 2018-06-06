@@ -22,4 +22,8 @@ public class ExerciseRepository {
         return em.createNamedQuery(FIND_ALL).getResultList();
     }
     
+    public void save(Exercise exercise) {
+        em.persist(exercise);
+    }
+    
 }

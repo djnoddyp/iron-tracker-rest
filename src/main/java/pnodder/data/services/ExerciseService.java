@@ -15,5 +15,9 @@ public class ExerciseService {
     public Iterable<Exercise> findAll() {
         return exerciseRepository.findAll();
     }
+    
+    public void save(Exercise exercise) {
+        exerciseRepository.save(exercise);
+    }
 
 }
