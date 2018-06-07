@@ -1,7 +1,7 @@
 package pnodder.web.controllers;
 
-import pnodder.data.domain.Exercise;
-import pnodder.data.services.ExerciseService;
+import pnodder.domain.Exercise;
+import pnodder.services.ExerciseService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

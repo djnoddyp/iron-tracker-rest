@@ -1,6 +1,6 @@
-package pnodder.data.repositories;
+package pnodder.repositories;
 
-import pnodder.data.domain.ExerciseNames;
+import pnodder.domain.ExerciseNames;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
-package pnodder.data.repositories;
+package pnodder.repositories;
 
-import pnodder.data.domain.Workout;
+import pnodder.domain.Workout;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -29,4 +29,10 @@ public class WorkoutRepository {
     public void save(Workout workout) {
         em.persist(workout);
     }
+
+//    public Long saveAndReturnId(Workout workout) {
+//        em.persist(workout);
+//        //em.flush();
+//        return workout.getId();
+//    }
 }

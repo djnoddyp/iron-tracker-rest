@@ -1,9 +1,9 @@
 package pnodder.web.controllers;
 
-import pnodder.data.domain.ExerciseNames;
-import pnodder.data.domain.Workout;
-import pnodder.data.services.ExerciseNamesService;
-import pnodder.data.services.WorkoutService;
+import pnodder.domain.ExerciseNames;
+import pnodder.domain.Workout;
+import pnodder.services.ExerciseNamesService;
+import pnodder.services.WorkoutService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;

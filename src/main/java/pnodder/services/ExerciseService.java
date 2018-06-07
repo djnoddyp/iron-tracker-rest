@@ -1,7 +1,7 @@
-package pnodder.data.services;
+package pnodder.services;
 
-import pnodder.data.domain.Exercise;
-import pnodder.data.repositories.ExerciseRepository;
+import pnodder.domain.Exercise;
+import pnodder.repositories.ExerciseRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

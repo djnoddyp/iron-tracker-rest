@@ -1,4 +1,4 @@
-package pnodder.data.domain;
+package pnodder.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,6 +43,10 @@ public class Workout {
     public Workout(Date date, Set<Exercise> exercises) {
         this.date = date;
         this.exercises = exercises;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Date getDate() {

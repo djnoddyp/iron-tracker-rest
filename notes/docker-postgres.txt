@@ -1,0 +1,3 @@
+Need to download postgres from docker hub and the run it it e.g:
+
+docker run --name iron-postgres -e POSTGRES_PASSWORD=trance -e POSTGRES_DB=irondb -d -p 5432:5432 ldnddmsdck01:8082/postgres

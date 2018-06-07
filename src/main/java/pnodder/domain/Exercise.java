@@ -1,4 +1,4 @@
-package pnodder.data.domain;
+package pnodder.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,10 +10,10 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(
-        name = "ExerciseNames.findAll",
-        query = "SELECT e FROM ExerciseNames e"
+        name = "Exercise.findAll",
+        query = "SELECT e FROM Exercise e"
 )
-public class ExerciseNames {
+public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,17 @@ public class ExerciseNames {
     private Long id;
 
     private String name;
+
+    private int sets;
+
+    private int reps;
+
+    public Exercise() {
+    }
+
+    public Exercise(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -36,5 +47,21 @@ public class ExerciseNames {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
     }
 }

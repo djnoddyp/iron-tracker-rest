@@ -1,4 +1,4 @@
-package pnodder.data.config;
+package pnodder.web;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
