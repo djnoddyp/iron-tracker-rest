@@ -6,6 +6,7 @@
              version="2.1">
 
     <persistence-unit name="IRONPU">
+        <jta-data-source>java:jboss/datasources/IronDS</jta-data-source>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/irondb" />
@@ -16,7 +17,6 @@
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
             <property name="hibernate.use_sql_comments" value="false" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
         </properties>
     </persistence-unit>
 
