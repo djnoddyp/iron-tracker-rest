@@ -10,8 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
-@SessionScoped
-public class Resources implements Serializable {
+public class Resources {
     
     @Produces
     @PersistenceContext
